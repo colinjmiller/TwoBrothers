@@ -2,5 +2,7 @@
 // You can write your code in this editor
 
 if (other.bulletOwner != player) {
-	instance_destroy();	
+	god.gameOver = true;
+	audio_stop_sound(metranome120BPMSound);
+	instance_destroy();
 }

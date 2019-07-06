@@ -29,13 +29,20 @@ if (god.canMove && canMove) {
 				x += sprite_width;
 			}
 		} else if (fireKeyPressed) {
-			bullet = instance_create_depth(x, y, 1, bulletObject);
-			with (bullet) {
-				bulletDirection = other.shootDirection;
-				bulletOwner = other.player;
+			if (ammo > 0) {
+				ammo--;
+				bullet = instance_create_depth(x, y, 1, bulletObject);
+				with (bullet) {
+					bulletDirection = other.shootDirection;
+					bulletOwner = other.player;
+				}
 			}
 		}
 	}
+}
+
+if (god.beatIncremented && god.currentBeat % 4 == 3) {
+	ammo = min(ammo + 1, 5);	
 }
 
 /*
