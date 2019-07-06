@@ -1,31 +1,44 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+if (god.beatIncremented) {
+	if (offBeatAttempt) {
+		show_debug_message("No movement this round penalty");
+		offBeatAttempt = false;	
+	} else {
+		canMove = true;	
+	}
+	
+	if (god.currentBeat % 4 == 3) {
+		ammo = min(ammo + 1, 5);	
+	}	
+}
+
 downKeyPressed = keyboard_check_pressed(downKey);
 upKeyPressed = keyboard_check_pressed(upKey);
 leftKeyPressed = keyboard_check_pressed(leftKey);
 rightKeyPressed = keyboard_check_pressed(rightKey);
 fireKeyPressed = keyboard_check_pressed(fireKey);
 
-if (god.canMove && canMove) {
-	if (anyScript(downKeyPressed, upKeyPressed, leftKeyPressed, rightKeyPressed, fireKeyPressed)) {
+
+if (anyScript(downKeyPressed, upKeyPressed, leftKeyPressed, rightKeyPressed, fireKeyPressed)) {
+	if (god.canMove && canMove) {
 		canMove = false;
-		alarm[0] = god.millisecondOffset / 1000 * room_speed;
 		
 		if (downKeyPressed) {
-			if (y + sprite_height < room_height) {
+			if (collision_point(x, y + sprite_height, gridObject, false, true)) {
 				y += sprite_height;
 			}
 		} else if (upKeyPressed) {
-			if (y - sprite_height >= 0) {
+			if (collision_point(x, y - sprite_height, gridObject, false, true)) {
 				y -= sprite_height;	
 			}
 		} else if (leftKeyPressed) {
-			if (x - sprite_width >= 0) {
+			if (collision_point(x - sprite_width, y, gridObject, false, true)) {
 				x -= sprite_width;
 			}
 		} else if (rightKeyPressed) {
-			if (x + sprite_width < room_width) {
+			if (collision_point(x + sprite_width, y, gridObject, false, true)) {
 				x += sprite_width;
 			}
 		} else if (fireKeyPressed) {
@@ -33,22 +46,14 @@ if (god.canMove && canMove) {
 				ammo--;
 				bullet = instance_create_depth(x, y, 1, bulletObject);
 				with (bullet) {
-					bulletDirection = other.shootDirection;
+					image_xscale = other.shootDirection;	
 					bulletOwner = other.player;
 				}
 			}
 		}
+	} else {
+		show_debug_message("No movement for you!");
+		offBeatAttempt = true;
+		canMove = false;
 	}
 }
-
-if (god.beatIncremented && god.currentBeat % 4 == 3) {
-	ammo = min(ammo + 1, 5);	
-}
-
-/*
-if (god.canMove) {
-	image_alpha = 1;
-} else {
-	image_alpha = 0;
-}
-*/
