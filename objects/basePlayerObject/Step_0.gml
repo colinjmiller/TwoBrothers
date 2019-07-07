@@ -46,7 +46,7 @@ if (anyScript(downKeyPressed, upKeyPressed, leftKeyPressed, rightKeyPressed, fir
 		} else if (fireKeyPressed) {
 			if (ammo > 0) {
 				ammo--;
-				bullet = instance_create_depth(x, y, 1, bulletObject);
+				bullet = instance_create_depth(x, y, 9000, bulletObject);
 				with (bullet) {
 					image_xscale = other.shootDirection;	
 					bulletOwner = other.player;
