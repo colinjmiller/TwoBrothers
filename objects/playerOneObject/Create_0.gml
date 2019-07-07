@@ -10,3 +10,5 @@ leftKey = vk_left;
 rightKey = vk_right;
 fireKey = vk_enter;
 shootDirection = -1;
+maxLeft = room_width / 2;
+maxRight = room_width;

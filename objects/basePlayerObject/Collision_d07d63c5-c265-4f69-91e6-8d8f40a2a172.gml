@@ -2,7 +2,5 @@
 // You can write your code in this editor
 
 if (other.bulletOwner != player) {
-	god.gameOver = true;
-	audio_stop_sound(metranome120BPMSound);
-	instance_destroy();
+	god.roundWinner = (player == 1) ? 2 : 1;
 }

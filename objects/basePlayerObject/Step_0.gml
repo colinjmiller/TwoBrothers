@@ -34,11 +34,11 @@ if (anyScript(downKeyPressed, upKeyPressed, leftKeyPressed, rightKeyPressed, fir
 				y -= sprite_height;	
 			}
 		} else if (leftKeyPressed) {
-			if (collision_point(x - sprite_width, y, gridObject, false, true)) {
+			if (collision_point(x - sprite_width, y, gridObject, false, true) && (x - sprite_width) >= maxLeft) {
 				x -= sprite_width;
 			}
 		} else if (rightKeyPressed) {
-			if (collision_point(x + sprite_width, y, gridObject, false, true)) {
+			if (collision_point(x + sprite_width, y, gridObject, false, true) && (x - sprite_width) <= maxRight) {
 				x += sprite_width;
 			}
 		} else if (fireKeyPressed) {
