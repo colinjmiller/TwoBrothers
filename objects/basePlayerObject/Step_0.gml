@@ -2,12 +2,14 @@
 // You can write your code in this editor
 
 if (god.beatIncremented) {
-	if (offBeatAttempt) {
-		show_debug_message("No movement this round penalty");
-		offBeatAttempt = false;	
-	} else {
+	if (offBeatAttempts < 2) {
+		image_alpha = 1;
 		canMove = true;	
+	} else {
+		// Adjust alpha to clarify penalty state
+		image_alpha = .5;
 	}
+	offBeatAttempts = 0;
 	
 	if (god.currentBeat % 4 == 3) {
 		ammo = min(ammo + 1, 5);	
@@ -38,7 +40,7 @@ if (anyScript(downKeyPressed, upKeyPressed, leftKeyPressed, rightKeyPressed, fir
 				x -= sprite_width;
 			}
 		} else if (rightKeyPressed) {
-			if (collision_point(x + sprite_width, y, gridObject, false, true) && (x - sprite_width) <= maxRight) {
+			if (collision_point(x + sprite_width, y, gridObject, false, true) && (x + sprite_width) <= maxRight) {
 				x += sprite_width;
 			}
 		} else if (fireKeyPressed) {
@@ -52,8 +54,6 @@ if (anyScript(downKeyPressed, upKeyPressed, leftKeyPressed, rightKeyPressed, fir
 			}
 		}
 	} else {
-		show_debug_message("No movement for you!");
-		offBeatAttempt = true;
-		canMove = false;
+		offBeatAttempts++;
 	}
 }

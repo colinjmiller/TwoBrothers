@@ -1,5 +1,4 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-ammo = 3;
-offBeatAttempts = 0;
+x += sprite_width;

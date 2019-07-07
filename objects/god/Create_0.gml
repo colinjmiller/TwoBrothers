@@ -6,8 +6,8 @@ playerOneScore = 0;
 playerTwoScore = 0;
 roundWinner = 0;
 
-music = metranome60BPMSound;
-var beatsPerMinute = 60;
+music = music120BPMSound;
+var beatsPerMinute = 120;
 var movementWindowPercent = .25;
 beatsPerSecond = beatsPerMinute / 60;
 millisecondsPerBeat = 1000 / beatsPerSecond;
