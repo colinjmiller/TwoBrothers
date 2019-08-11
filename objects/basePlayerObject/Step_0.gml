@@ -8,6 +8,7 @@ if (god.beatIncremented) {
 	} else {
 		// Adjust alpha to clarify penalty state
 		image_alpha = .5;
+		audio_play_sound(penaltySound, 0, false);
 	}
 	offBeatAttempts = 0;
 	
@@ -47,6 +48,7 @@ if (anyScript(downKeyPressed, upKeyPressed, leftKeyPressed, rightKeyPressed, fir
 			if (ammo > 0) {
 				ammo--;
 				bullet = instance_create_depth(x, y, 9000, bulletObject);
+				audio_play_sound(pyewSound, 0, false);
 				with (bullet) {
 					image_xscale = other.shootDirection;	
 					bulletOwner = other.player;

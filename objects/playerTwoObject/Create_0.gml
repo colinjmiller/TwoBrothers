@@ -12,3 +12,4 @@ fireKey = vk_lcontrol;
 shootDirection = 1;
 maxLeft = 0;
 maxRight = room_width / 2;
+penaltySound = movePenaltyP2Sound;

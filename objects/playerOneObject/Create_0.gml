@@ -12,3 +12,4 @@ fireKey = vk_enter;
 shootDirection = -1;
 maxLeft = room_width / 2;
 maxRight = room_width;
+penaltySound = movePenaltyP1Sound;
